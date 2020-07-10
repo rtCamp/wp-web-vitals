@@ -1,0 +1,25 @@
+#web-vitals-report-wrap {
+	position: fixed;
+	left: 0px;
+	clear: both;
+	margin: 0 auto;
+	font-family: sans-serif;
+	background-color: lightgrey;
+	color: black;
+	padding: 0 20px 10px 20px;
+	width: 100vw;
+}
+.grid-container {
+	display: grid;
+	grid-template-rows: 50px;
+	grid-template-areas: '. . .';
+}
+.box-good {
+	background-color: hsl(118, 41%, 49%);
+}
+.box-needs-improvement {
+	background-color: hsl(31, 78%, 53%);
+}
+.box-poor {
+	background-color: hsl(359, 80%, 50%);
+}
