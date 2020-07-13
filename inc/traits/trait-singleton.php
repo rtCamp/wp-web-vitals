@@ -22,10 +22,10 @@
  *
  * If you specifically need multiple objects, then use a normal class.
  *
- * @package wp-web-vitals
+ * @package web-vitals-admin-bar
  */
 
-namespace WP_Web_Vitals\Inc\Traits;
+namespace Web_Vitals_Admin_Bar\Inc\Traits;
 
 trait Singleton {
 
@@ -76,9 +76,9 @@ trait Singleton {
 			$instance[ $called_class ] = new $called_class();
 
 			/**
-			 * Dependent items can use the `wp_google_login_extend_singleton_init_{$called_class}` hook to execute code
+			 * Dependent items can use the `web_vitals_admin_bar_extend_singleton_init_{$called_class}` hook to execute code
 			 */
-			do_action( sprintf( 'wp_google_login_extend_singleton_init_%s', $called_class ) );
+			do_action( sprintf( 'web_vitals_admin_bar_extend_singleton_init_%s', $called_class ) );
 
 		}
 

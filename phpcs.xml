@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="WP Web Vitals ruleset">
+<ruleset name="Web Vitals Admin Bar ruleset">
 	<rule ref="WordPressVIPMinimum"/>
 	<rule ref="WordPress-Docs"/>
 	<rule ref="Generic.Arrays.DisallowLongArraySyntax.Found">

@@ -2,7 +2,7 @@
 /**
  * Don't load directly.
  *
- * @package wp-web-vitals
+ * @package web-vitals-admin-bar
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

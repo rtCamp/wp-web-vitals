@@ -25,7 +25,7 @@ async function generateReport() {
 
 	let wrapper = document.createElement( 'div' );
 	wrapper.setAttribute( "id", "web-vitals-report-wrap" );
-	document.getElementById( "wp-admin-bar-wp_web_vitals" ).appendChild( wrapper );
+	document.getElementById( "wp-admin-bar-web_vitals_admin_bar" ).appendChild( wrapper );
 
 	// Display metric results
 	for (const metric of labeledMetrics) {
@@ -117,13 +117,13 @@ function createDescriptionAndBars( labeledBins ) {
 }
 
 jQuery( document ).ready( function ( $ ) {
-	$( '#wp-admin-bar-wp_web_vitals' ).on( "click", function ( e ) {
+	$( '#wp-admin-bar-web_vitals_admin_bar' ).on( "click", function ( e ) {
 		if ($( "#web-vitals-report-wrap" ).length === 0) {
 			generateReport();
 		}
 	} );
 	$( document ).mouseup( function ( e ) {
-		let container = $( "#wp-admin-bar-wp_web_vitals" );
+		let container = $( "#wp-admin-bar-web_vitals_admin_bar" );
 
 		// if the target of the click isn't the container nor a descendant of the container
 		if (!container.is( e.target ) && container.has( e.target ).length === 0) {

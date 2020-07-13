@@ -2,14 +2,14 @@
 /**
  * To Register autoloader
  *
- * @package wp-web-vitals
+ * @package web-vitals-admin-bar
  */
 
 spl_autoload_register( function ( $resource = '' ) {
 
 	$resource_path = false;
 
-	$namespace_root = 'WP_Web_Vitals\\';
+	$namespace_root = 'Web_Vitals_Admin_Bar\\';
 
 	$resource = trim( $resource, '\\' );
 
