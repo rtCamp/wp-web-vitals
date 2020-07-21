@@ -29,6 +29,8 @@ async function generateReport() {
 
 	// Display metric results
 	for (const metric of labeledMetrics) {
+		generateAdminBarIndicator( metric );
+
 		const metricEl = document.createElement( 'section' );
 
 		const titleEl = document.createElement( 'h2' );
@@ -39,6 +41,8 @@ async function generateReport() {
 		metricEl.append( titleEl, descEl, barsEl );
 		document.getElementById( 'web-vitals-report-wrap' ).append( metricEl );
 	}
+	// Initially hide the report
+	jQuery( "#web-vitals-report-wrap" ).hide();
 }
 
 /**
@@ -103,8 +107,6 @@ function createDescriptionAndBars( labeledBins ) {
 		const barEl = document.createElement( 'div' );
 		// Reuse the label for the styling class, changing any spaces:  `needs improvement` => `needs-improvement`
 		barEl.classList.add( `box-${bin.label.replace( ' ', '-' )}` );
-		// Add tooltip to share the size of each bin
-		barEl.title = `bin start: ${bin.start}, bin end: ${bin.end}`;
 		barsEl.append( barEl );
 	}
 
@@ -116,12 +118,105 @@ function createDescriptionAndBars( labeledBins ) {
 	return [descEl, barsEl];
 }
 
+// Create the admin bar indicator of web vitals metrics.
+function generateAdminBarIndicator( metric ) {
+	switch ( metric.acronym ) {
+		case 'FCP':
+			for( let idx = 0; idx < metric.labeledBins.length; idx++ ) {
+				switch ( metric.labeledBins[idx].label ) {
+					case 'good':
+						jQuery(".fcp .web-vitals-good").width(metric.labeledBins[idx].percentage).height(7);
+						break;
+
+					case 'needs improvement':
+						jQuery(".fcp .web-vitals-ni").width(metric.labeledBins[idx].percentage).height(7);
+						break;
+
+					case 'poor':
+						jQuery(".fcp .web-vitals-poor").width(metric.labeledBins[idx].percentage).height(7);
+						break;
+
+					default:
+						break;
+				}
+			}
+			break;
+
+		case 'LCP':
+			for( let idx = 0; idx < metric.labeledBins.length; idx++ ) {
+				switch ( metric.labeledBins[idx].label ) {
+				case 'good':
+					jQuery(".lcp .web-vitals-good").width(metric.labeledBins[idx].percentage).height(7);
+					break;
+
+				case 'needs improvement':
+					jQuery(".lcp .web-vitals-ni").width(metric.labeledBins[idx].percentage).height(7);
+					break;
+
+				case 'poor':
+					jQuery(".lcp .web-vitals-poor").width(metric.labeledBins[idx].percentage).height(7);
+					break;
+
+				default:
+					break;
+				}
+			}
+			break;
+
+		case 'FID':
+			for( let idx = 0; idx < metric.labeledBins.length; idx++ ) {
+				switch ( metric.labeledBins[idx].label ) {
+				case 'good':
+					jQuery(".fid .web-vitals-good").width(metric.labeledBins[idx].percentage).height(7);
+					break;
+
+				case 'needs improvement':
+					jQuery(".fid .web-vitals-ni").width(metric.labeledBins[idx].percentage).height(7);
+					break;
+
+				case 'poor':
+					jQuery(".fid .web-vitals-poor").width(metric.labeledBins[idx].percentage).height(7);
+					break;
+
+				default:
+					break;
+				}
+			}
+			break;
+
+		case 'CLS':
+			for( let idx = 0; idx < metric.labeledBins.length; idx++ ) {
+				switch ( metric.labeledBins[idx].label ) {
+				case 'good':
+					jQuery(".cls .web-vitals-good").width(metric.labeledBins[idx].percentage).height(7);
+					break;
+
+				case 'needs improvement':
+					jQuery(".cls .web-vitals-ni").width(metric.labeledBins[idx].percentage).height(7);
+					break;
+
+				case 'poor':
+					jQuery(".cls .web-vitals-poor").width(metric.labeledBins[idx].percentage).height(7);
+					break;
+
+				default:
+					break;
+				}
+			}
+			break;
+
+		default:
+			break;
+	}
+}
+
 jQuery( document ).ready( function ( $ ) {
-	$( '#wp-admin-bar-web_vitals_admin_bar' ).on( "click", function ( e ) {
-		if ($( "#web-vitals-report-wrap" ).length === 0) {
-			generateReport();
-		}
+	generateReport();
+
+	$( '#web-vitals-admin-container' ).on( "click", function ( e ) {
+		$( "#web-vitals-report-wrap" ).show();
 	} );
+
 	$( document ).mouseup( function ( e ) {
 		let container = $( "#wp-admin-bar-web_vitals_admin_bar" );
 
