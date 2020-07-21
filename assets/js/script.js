@@ -120,41 +120,41 @@ function createDescriptionAndBars( labeledBins ) {
 
 // Create the admin bar indicator of web vitals metrics.
 function generateAdminBarIndicator( metric ) {
-	switch ( metric.acronym ) {
+	switch (metric.acronym) {
 		case 'FCP':
-			for( let idx = 0; idx < metric.labeledBins.length; idx++ ) {
-				switch ( metric.labeledBins[idx].label ) {
-					case 'good':
-						jQuery(".fcp .web-vitals-good").width(metric.labeledBins[idx].percentage).height(7);
-						break;
+			for (let idx = 0; idx < metric.labeledBins.length; idx++) {
+				switch (metric.labeledBins[idx].label) {
+				case 'good':
+					jQuery( ".fcp .web-vitals-good" ).width( metric.labeledBins[idx].percentage ).height( 7 );
+					break;
 
-					case 'needs improvement':
-						jQuery(".fcp .web-vitals-ni").width(metric.labeledBins[idx].percentage).height(7);
-						break;
+				case 'needs improvement':
+					jQuery( ".fcp .web-vitals-ni" ).width( metric.labeledBins[idx].percentage ).height( 7 );
+					break;
 
-					case 'poor':
-						jQuery(".fcp .web-vitals-poor").width(metric.labeledBins[idx].percentage).height(7);
-						break;
+				case 'poor':
+					jQuery( ".fcp .web-vitals-poor" ).width( metric.labeledBins[idx].percentage ).height( 7 );
+					break;
 
-					default:
-						break;
+				default:
+					break;
 				}
 			}
 			break;
 
 		case 'LCP':
-			for( let idx = 0; idx < metric.labeledBins.length; idx++ ) {
-				switch ( metric.labeledBins[idx].label ) {
+			for (let idx = 0; idx < metric.labeledBins.length; idx++) {
+				switch (metric.labeledBins[idx].label) {
 				case 'good':
-					jQuery(".lcp .web-vitals-good").width(metric.labeledBins[idx].percentage).height(7);
+					jQuery( ".lcp .web-vitals-good" ).width( metric.labeledBins[idx].percentage ).height( 7 );
 					break;
 
 				case 'needs improvement':
-					jQuery(".lcp .web-vitals-ni").width(metric.labeledBins[idx].percentage).height(7);
+					jQuery( ".lcp .web-vitals-ni" ).width( metric.labeledBins[idx].percentage ).height( 7 );
 					break;
 
 				case 'poor':
-					jQuery(".lcp .web-vitals-poor").width(metric.labeledBins[idx].percentage).height(7);
+					jQuery( ".lcp .web-vitals-poor" ).width( metric.labeledBins[idx].percentage ).height( 7 );
 					break;
 
 				default:
@@ -164,18 +164,18 @@ function generateAdminBarIndicator( metric ) {
 			break;
 
 		case 'FID':
-			for( let idx = 0; idx < metric.labeledBins.length; idx++ ) {
-				switch ( metric.labeledBins[idx].label ) {
+			for (let idx = 0; idx < metric.labeledBins.length; idx++) {
+				switch (metric.labeledBins[idx].label) {
 				case 'good':
-					jQuery(".fid .web-vitals-good").width(metric.labeledBins[idx].percentage).height(7);
+					jQuery( ".fid .web-vitals-good" ).width( metric.labeledBins[idx].percentage ).height( 7 );
 					break;
 
 				case 'needs improvement':
-					jQuery(".fid .web-vitals-ni").width(metric.labeledBins[idx].percentage).height(7);
+					jQuery( ".fid .web-vitals-ni" ).width( metric.labeledBins[idx].percentage ).height( 7 );
 					break;
 
 				case 'poor':
-					jQuery(".fid .web-vitals-poor").width(metric.labeledBins[idx].percentage).height(7);
+					jQuery( ".fid .web-vitals-poor" ).width( metric.labeledBins[idx].percentage ).height( 7 );
 					break;
 
 				default:
@@ -185,18 +185,18 @@ function generateAdminBarIndicator( metric ) {
 			break;
 
 		case 'CLS':
-			for( let idx = 0; idx < metric.labeledBins.length; idx++ ) {
-				switch ( metric.labeledBins[idx].label ) {
+			for (let idx = 0; idx < metric.labeledBins.length; idx++) {
+				switch (metric.labeledBins[idx].label) {
 				case 'good':
-					jQuery(".cls .web-vitals-good").width(metric.labeledBins[idx].percentage).height(7);
+					jQuery( ".cls .web-vitals-good" ).width( metric.labeledBins[idx].percentage ).height( 7 );
 					break;
 
 				case 'needs improvement':
-					jQuery(".cls .web-vitals-ni").width(metric.labeledBins[idx].percentage).height(7);
+					jQuery( ".cls .web-vitals-ni" ).width( metric.labeledBins[idx].percentage ).height( 7 );
 					break;
 
 				case 'poor':
-					jQuery(".cls .web-vitals-poor").width(metric.labeledBins[idx].percentage).height(7);
+					jQuery( ".cls .web-vitals-poor" ).width( metric.labeledBins[idx].percentage ).height( 7 );
 					break;
 
 				default:
@@ -213,8 +213,14 @@ function generateAdminBarIndicator( metric ) {
 jQuery( document ).ready( function ( $ ) {
 	generateReport();
 
-	$( '#web-vitals-admin-container' ).on( "click", function ( e ) {
-		$( "#web-vitals-report-wrap" ).show();
+	$( '#web-vitals-admin-container' ).on( "click", function ( event ) {
+		let report_wrap = $( "#web-vitals-report-wrap" );
+
+		if (report_wrap.is( ":hidden" )) {
+			report_wrap.show();
+		} else {
+			report_wrap.hide();
+		}
 	} );
 
 	$( document ).mouseup( function ( e ) {
@@ -222,7 +228,7 @@ jQuery( document ).ready( function ( $ ) {
 
 		// if the target of the click isn't the container nor a descendant of the container
 		if (!container.is( e.target ) && container.has( e.target ).length === 0) {
-			$( "#web-vitals-report-wrap" ).remove();
+			$( "#web-vitals-report-wrap" ).hide();
 		}
 	} );
 } );
