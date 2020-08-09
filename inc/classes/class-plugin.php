@@ -72,28 +72,7 @@ class Plugin {
 		$node = array(
 			'id'     => 'web_vitals_admin_bar',
 			'parent' => 'top-secondary',
-			'title'  => '<div id="web-vitals-admin-container"">
-				<div class="fcp web-vitals-admin-bar">
-					<div class="web-vitals-good"></div>
-					<div class="web-vitals-ni"></div>
-					<div class="web-vitals-poor"></div>
-				</div>
-				<div class="lcp web-vitals-admin-bar">
-					<div class="web-vitals-good"></div>
-					<div class="web-vitals-ni"></div>
-					<div class="web-vitals-poor"></div>
-				</div>
-				<div class="fid web-vitals-admin-bar">
-					<div class="web-vitals-good"></div>
-					<div class="web-vitals-ni"></div>
-					<div class="web-vitals-poor"></div>
-				</div>
-				<div class="cls web-vitals-admin-bar">
-					<div class="web-vitals-good"></div>
-					<div class="web-vitals-ni"></div>
-					<div class="web-vitals-poor"></div>
-				</div>
-			</div>',
+			'title'  => '<div id="web-vitals-admin-container""></div>',
 			'href'   => '#',
 		);
 

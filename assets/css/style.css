@@ -1,3 +1,6 @@
+h1:not(.site-title)::before, h2::before {
+	display: none;
+}
 #web-vitals-report-wrap {
 	position: fixed;
 	left: 1px;
@@ -36,11 +39,12 @@
 	padding: 0;
 }
 
-.web-vitals-admin-bar {
+.web-vitals-admin-bar-cls,
+.web-vitals-admin-bar-fcp,
+.web-vitals-admin-bar-fid,
+.web-vitals-admin-bar-lcp {
 	width: 100px !important;
-	height: 7px !important;
-	margin: 0;
-	padding: 0;
+	height: 8px !important;
 	display: flex;
 }
 
@@ -49,7 +53,7 @@
 	z-index: 999;
 }
 
-.web-vitals-ni {
+.web-vitals-needs-improvement {
 	background: yellow;
 	z-index: 999;
 }
