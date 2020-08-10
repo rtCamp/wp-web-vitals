@@ -110,7 +110,7 @@ function createDescriptionAndBars( metric ) {
 	adminBarParent.innerHTML = `<div class="web-vitals-good"></div>
 	<div class="web-vitals-needs-improvement"></div>
 	<div class="web-vitals-poor"></div>`;
-	document.getElementById('web-vitals-admin-container').appendChild(adminBarParent);
+	document.getElementById( 'web-vitals-admin-container' ).appendChild( adminBarParent );
 
 
 	for (const bin of labeledBins) {

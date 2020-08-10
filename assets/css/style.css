@@ -1,6 +1,7 @@
 h1:not(.site-title)::before, h2::before {
 	display: none;
 }
+
 #web-vitals-report-wrap {
 	position: fixed;
 	left: 1px;
