@@ -1,7 +1,7 @@
-# Web Vitals Admin Bar
+# WP Web Vitals
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
-A minimal plugin which allows WP user to login with google. This plugin can be used as MU plugin too.
+A WordPress plugin which shows various Web Vitals analytics visually.
 
 **Author:** rtCamp
 
@@ -45,12 +45,3 @@ Once you're ready to send a pull request, please run through the following check
 
 1. Once your pull request has passed final code review and tests, it will be merged into `develop` and be in the pipeline for the next release. Props to you! 🎉
 
-## Unit testing
-
-- Setup local unit test environment by running script from terminal
-
-```./bin/install-wp-tests.sh <db-name> <db-user> <db-pass> [db-host] [wp-version] [skip-database-creation]```
-
-- Execute `phpunit` in terminal from repository to run all test cases.
-
-- Execute `phpunit ./tests/inc/test-class.php` in terminal with file path to run specific tests.
