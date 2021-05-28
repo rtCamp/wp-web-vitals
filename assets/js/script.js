@@ -1,29 +1,27 @@
-const apiKey = "AIzaSyB2MNhStdKzadnaTn995wFP4lMtTdIQkKY";
 const CrUXApiUtil = {};
-CrUXApiUtil.KEY = apiKey;
+CrUXApiUtil.KEY = wpWebVitals.cruxApiKey;
 
 // Gather the data for example.com and display it
 async function generateReport() {
-
 	const endpointUrl = 'https://chromeuxreport.googleapis.com/v1/records:queryRecord';
 	const resp = await fetch( `${endpointUrl}?key=${CrUXApiUtil.KEY}`, {
 		method: 'POST',
 		body: JSON.stringify( {
-			origin: 'https://rtcamp.com'
+			origin: window.location.href
 		} ),
 	} );
+
+	const json = await resp.json();
 
 	if (!resp.ok) {
 		throw new Error( json.error.message );
 	}
 
-	const json = await resp.json();
-
 	const labeledMetrics = labelMetricData( json.record.metrics );
 
 	let wrapper = document.createElement( 'div' );
 	wrapper.setAttribute( "id", "web-vitals-report-wrap" );
-	document.getElementById( "wp-admin-bar-web_vitals_admin_bar" ).appendChild( wrapper );
+	document.body.appendChild( wrapper );
 
 	// Display metric results
 	for (const metric of labeledMetrics) {
@@ -139,6 +137,8 @@ jQuery( document ).ready( function ( $ ) {
 	generateReport();
 
 	$( '#web-vitals-admin-container' ).on( "click", function ( event ) {
+		event.preventDefault();
+
 		let report_wrap = $( "#web-vitals-report-wrap" );
 
 		if (report_wrap.is( ":hidden" )) {
@@ -148,8 +148,8 @@ jQuery( document ).ready( function ( $ ) {
 		}
 	} );
 
-	$( document ).mouseup( function ( e ) {
-		let container = $( "#wp-admin-bar-web_vitals_admin_bar" );
+	$( document ).on( 'mouseup', function ( e ) {
+		let container = $( "#web-vitals-report-wrap" );
 
 		// if the target of the click isn't the container nor a descendant of the container
 		if (!container.is( e.target ) && container.has( e.target ).length === 0) {

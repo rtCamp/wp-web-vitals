@@ -47,7 +47,15 @@ class Plugin {
 	 * @return void
 	 */
 	public function web_vitals_enqueue_scripts() {
-		wp_enqueue_script( 'wp_web_vital_script', sprintf( '%s/assets/js/script.js', WP_WEB_VITALS_URL ), array( 'jquery' ), WP_WEB_VITALS_VERSION, false );
+		wp_enqueue_script( 'wp_web_vitals_script', sprintf( '%s/assets/js/script.js', WP_WEB_VITALS_URL ), array( 'jquery' ), WP_WEB_VITALS_VERSION, false );
+
+		wp_localize_script(
+			'wp_web_vitals_script',
+			'wpWebVitals',
+			array(
+				'cruxApiKey' => get_option( 'wp_web_vitals_crux_api_key' ),
+			)
+		);
 	}
 
 	/**
@@ -56,8 +64,8 @@ class Plugin {
 	 * @return void
 	 */
 	public function web_vitals_enqueue_styles() {
-		wp_register_style( 'wp_web_vital_style', sprintf( '%s/assets/css/style.css', WP_WEB_VITALS_URL ), array(), WP_WEB_VITALS_VERSION );
-		wp_enqueue_style( 'wp_web_vital_style' );
+		wp_register_style( 'wp_web_vitals_style', sprintf( '%s/assets/css/style.css', WP_WEB_VITALS_URL ), array(), WP_WEB_VITALS_VERSION );
+		wp_enqueue_style( 'wp_web_vitals_style' );
 	}
 
 	/**
