@@ -16,6 +16,10 @@ h1:not(.site-title)::before, h2::before {
 	box-shadow: 0px 1px 5px 0px #666;
 }
 
+.web-vitals-report-wrap-hidden {
+	display: none;
+}
+
 #web-vitals-report-wrap section {
 	padding: 10px;
 }
