@@ -73,7 +73,7 @@ class Plugin {
 	 *
 	 */
 	public function add_admin_bar_menu_items() {
-		global $wp_admin_bar;
+		global $wp_admin_bar, $wp;
 
 		if ( is_admin() ) {
 			return;
@@ -85,6 +85,18 @@ class Plugin {
 			'title'  => '<div id="web-vitals-admin-container"></div>',
 			'href'   => '#',
 		);
+
+		if ( wp_web_vitals_is_amp() ) {
+			$data = array(
+				'currentURL' => home_url( add_query_arg( array(), $wp->request ) ),
+				'cruxApiKey' => get_option( 'wp_web_vitals_crux_api_key' ),
+			);
+
+			ob_start();
+			require_once WP_WEB_VITALS_PATH . '/templates/amp-script.php';
+			$amp_script = ob_get_clean();
+			$node['title'] = $amp_script;
+		}
 
 		$wp_admin_bar->add_node( $node );
 	}
