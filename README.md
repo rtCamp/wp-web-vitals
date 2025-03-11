@@ -13,7 +13,7 @@ A WordPress plugin which shows various Web Vitals analytics visually.
 
 **Requires PHP version:** 7.0
 
-**Active Plugin Required:** [AMP](https://wordpress.org/plugins/amp/)
+**Plugin Required:** [AMP](https://wordpress.org/plugins/amp/)
 
 **Stable tag:** 1.0
 
