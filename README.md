@@ -15,6 +15,8 @@ A WordPress plugin which shows various Web Vitals analytics visually.
 
 **Stable tag:** 1.0
 
+**Active Plugin Required:** [AMP](https://wordpress.org/plugins/amp/)
+
 **License:** GPLv2 or later (of course!)
 
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
