@@ -34,11 +34,11 @@ class Plugin {
 		/**
 		 * Actions
 		 */
-		add_action( 'admin_bar_menu', array( $this, 'add_admin_bar_menu_items' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'web_vitals_enqueue_scripts' ), 1 );
-		add_action( 'wp_head', array( $this, 'web_vitals_enqueue_styles' ), 1 );
-		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
-		add_action( 'admin_init',  array( $this, 'register_setting' ) );
+		add_action( 'admin_bar_menu', [ $this, 'add_admin_bar_menu_items' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'web_vitals_enqueue_scripts' ], 1 );
+		add_action( 'wp_head', [ $this, 'web_vitals_enqueue_styles' ], 1 );
+		add_action( 'admin_menu', [ $this, 'admin_menu' ] );
+		add_action( 'admin_init',  [ $this, 'register_setting' ] );
 	}
 
 	/**
@@ -47,14 +47,14 @@ class Plugin {
 	 * @return void
 	 */
 	public function web_vitals_enqueue_scripts() {
-		wp_enqueue_script( 'wp_web_vitals_script', sprintf( '%s/assets/js/script.js', WP_WEB_VITALS_URL ), array( 'jquery' ), WP_WEB_VITALS_VERSION, false );
+		wp_enqueue_script( 'wp_web_vitals_script', sprintf( '%s/assets/js/script.js', WP_WEB_VITALS_URL ), [ 'jquery' ], WP_WEB_VITALS_VERSION, false );
 
 		wp_localize_script(
 			'wp_web_vitals_script',
 			'wpWebVitals',
-			array(
+			[
 				'cruxApiKey' => get_option( 'wp_web_vitals_crux_api_key' ),
-			)
+			]
 		);
 	}
 
@@ -64,13 +64,12 @@ class Plugin {
 	 * @return void
 	 */
 	public function web_vitals_enqueue_styles() {
-		wp_register_style( 'wp_web_vitals_style', sprintf( '%s/assets/css/style.css', WP_WEB_VITALS_URL ), array(), WP_WEB_VITALS_VERSION );
+		wp_register_style( 'wp_web_vitals_style', sprintf( '%s/assets/css/style.css', WP_WEB_VITALS_URL ), [], WP_WEB_VITALS_VERSION );
 		wp_enqueue_style( 'wp_web_vitals_style' );
 	}
 
 	/**
 	 * Add menu items to admin bar for Web Vitals.
-	 *
 	 */
 	public function add_admin_bar_menu_items() {
 		global $wp_admin_bar, $wp;
@@ -79,18 +78,18 @@ class Plugin {
 			return;
 		}
 
-		$node = array(
+		$node = [
 			'id'     => 'web_vitals_admin_bar',
 			'parent' => 'top-secondary',
 			'title'  => '<div id="web-vitals-admin-container"></div>',
 			'href'   => '#',
-		);
+		];
 
 		if ( wp_web_vitals_is_amp() ) {
-			$data = array(
-				'currentURL' => home_url( add_query_arg( array(), $wp->request ) ),
+			$data = [
+				'currentURL' => home_url( add_query_arg( [], $wp->request ) ),
 				'cruxApiKey' => get_option( 'wp_web_vitals_crux_api_key' ),
-			);
+			];
 
 			ob_start();
 			require_once WP_WEB_VITALS_PATH . '/templates/amp-script.php';
@@ -110,10 +109,10 @@ class Plugin {
 			__( 'WP Web Vitals', 'wp-web-vitals' ),
 			'manage_options',
 			'wp-web-vitals',
-			array(
+			[
 				$this,
 				'admin_option_page'
-			)
+			]
 		);
 	}
 
@@ -142,13 +141,13 @@ class Plugin {
 		add_settings_field(
 			'wp_web_vitals_crux_api_key',
 			__( 'Chrome UX Report API Key', 'wp-web-vitals' ),
-			array( $this, 'api_key_option_html' ),
+			[ $this, 'api_key_option_html' ],
 			'wp-web-vitals',
 			'wp_web_vitals_general',
-			array(
+			[
 				'label_for' => 'wp_web_vitals_crux_api_key',
 				'class' => 'crux-api-key',
-			)
+			]
 		);
 
 	}
