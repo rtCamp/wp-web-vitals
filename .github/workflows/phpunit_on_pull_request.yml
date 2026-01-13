@@ -5,7 +5,7 @@ jobs:
     name: Run PHPUnit test
     runs-on: self-hosted
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v6
       with:
         ref: ${{ github.event.pull_request.head.sha }}
     - name: Run PHPUnit test
