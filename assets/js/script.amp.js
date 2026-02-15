@@ -1,4 +1,10 @@
-// Gather the data for example.com and display it
+/**
+ * Gather the data for example.com and display it.
+ *
+ * @since 1.0.0
+ * @package WP_Web_Vitals
+ */
+
 async function generateReport() {
 	const wpWebVitals = JSON.parse( await AMP.getState( 'wpWebVitals' ) );
 	const endpointUrl = 'https://chromeuxreport.googleapis.com/v1/records:queryRecord';
@@ -22,7 +28,7 @@ async function generateReport() {
 	wrapper.setAttribute( "class", "web-vitals-report-wrap-hidden" );
 	document.body.appendChild( wrapper );
 
-	// Display metric results
+	// Display metric results.
 	for (const metric of labeledMetrics) {
 
 		const metricEl = document.createElement( 'section' );
@@ -51,9 +57,9 @@ function labelMetricData( metrics ) {
 		const standardBinLabels = ['good', 'needs improvement', 'poor'];
 		const metricBins = metricData.histogram;
 
-		// We assume there are 3 histogram bins and they're in order of: good => poor
+		// We assume there are 3 histogram bins and they're in order of: good => poor.
 		const labeledBins = metricBins.map( ( bin, i ) => {
-			// Assign a good/poor label, calculate a percentage, and add retain all existing bin properties
+			// Assign a good/poor label, calculate a percentage, and add retain all existing bin properties.
 			return {
 				label: standardBinLabels[i],
 				percentage: bin.density * 100,
@@ -73,7 +79,7 @@ function createDescriptionAndBars( metric ) {
 	let labeledBins = metric.labeledBins;
 
 	const descEl = document.createElement( 'p' );
-	// Example: 'good: 43.63%, needs improvement: 42.10%, poor: 14.27%'
+	// Example: 'good: 43.63%, needs improvement: 42.10%, poor: 14.27%'.
 	descEl.textContent = labeledBins
 		.map( bin => `${bin.label}: ${bin.percentage.toFixed( 2 )}%` )
 		.join( ', ' );
@@ -93,7 +99,7 @@ function createDescriptionAndBars( metric ) {
 
 	for (const bin of labeledBins) {
 		const barEl = document.createElement( 'div' );
-		// Reuse the label for the styling class, changing any spaces:  `needs improvement` => `needs-improvement`
+		// Reuse the label for the styling class, changing any spaces:  `needs improvement` => `needs-improvement`.
 		barEl.classList.add( `box-${bin.label.replace( ' ', '-' )}` );
 		barsEl.appendChild( barEl );
 
@@ -114,8 +120,8 @@ function createDescriptionAndBars( metric ) {
 		}
 	}
 
-	// Set the width of the bar columns based on metric bins
-	// Ex: `grid-template-columns: 43.51% 42.26% 14.23%`;
+	// Set the width of the bar columns based on metric bins.
+	// Ex: `grid-template-columns: 43.51% 42.26% 14.23%`;.
 	barsEl.style.gridTemplateColumns = labeledBins.map( bin => `${bin.percentage}%` ).join( ' ' );
 	barsEl.classList.add( `grid-container` );
 

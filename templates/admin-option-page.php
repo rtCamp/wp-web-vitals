@@ -1,3 +1,13 @@
+<?php
+/**
+ * Admin option page template.
+ *
+ * @package WP_Web_Vitals
+ * @since 1.0.0
+ */
+
+?>
+
 <div class="wrap">
 	<h1><?php esc_html_e( 'WP Web Vitals', 'wp-web-vitals' ); ?></h1>
 
